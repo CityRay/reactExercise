@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ReactJs App 001</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<script src="https://fb.me/react-0.13.3.js"></script>
+	<script src="https://fb.me/JSXTransformer-0.13.3.js"></script>
+</head>
+<body>
+	<div class="container">
+        <h1>reactJs App 001</h1>
+        <div id="main"></div>
+	</div>
+	
+</body>
+
+<script type="text/jsx">
+    //Define a 'class'
+    var Badge = React.createClass({
+        render: function(){
+           return <button className="btn btn-primary" type="button">
+              {this.props.title} <span className="badge">{this.props.number}</span>
+            </button>
+        }
+    });
+    
+    var Form = React.createClass({
+        render: function(){
+            return <div>
+                <Badge title={this.props.title} number={this.props.number} />
+                </div>
+        }
+    });
+    var options = {
+        title: 'Inbox',
+        number: 35
+    };
+    
+    // render this class
+    var element = React.createElement(Form, options);
+    
+    
+    // after you render this class, place it in mybody tag
+    React.render(element, document.getElementById('main'));
+    
+</script>
+</html>

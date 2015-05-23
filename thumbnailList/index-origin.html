@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ReactJs App 002</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<script src="https://fb.me/react-0.13.3.js"></script>
+	<script src="https://fb.me/JSXTransformer-0.13.3.js"></script>
+	
+	<style>
+        img{
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+	<div class="container">
+        <h1>reactJs App 002</h1>
+        <div id="main" class="row myImg"></div>
+	</div>
+	
+</body>
+
+<script type="text/jsx">
+    //Define a 'class'
+    var Badge = React.createClass({
+        getInitialState: function(){
+            return {number: this.props.number}
+        },
+        handleClick: function(){
+            this.setState({number: this.state.number + 1});
+            //console.log(this.props);
+        },
+        render: function(){
+            var num = this.state.number;
+           return <button className="btn btn-primary" onClick={this.handleClick} type="button">
+              {this.props.title} <span className="badge">{num}</span>
+            </button>
+        }
+    });
+    
+    var Thumbnail = React.createClass({
+        render: function(){
+            return <div className="col-sm-6 col-md-4">
+                <div className="thumbnail">
+                  <img src={this.props.imageUrl} alt="img"></img>
+                  <div className="caption">
+                    <h3>{this.props.header}</h3>
+                    <p>{this.props.description}</p>
+                    <Badge title={this.props.title} onClick={this.onClick} number={this.props.number} />
+                    <p></p>
+                    <p>2015</p>
+                  </div>
+                </div>
+              </div>
+        }
+    });
+    
+    var ThumbnailList = React.createClass({
+        
+        render: function(){
+            
+            var list = this.props.thumbnailData.map(function(thumbnailProps){
+               
+                return <Thumbnail title={thumbnailProps.title} number={thumbnailProps.number} header={thumbnailProps.header}  description={thumbnailProps.description} imageUrl={thumbnailProps.imageUrl}/>
+            });
+            
+            return <div>
+                {list}
+            </div>
+        }
+    });
+    
+    var options = {
+        thumbnailData: [
+        {
+            title: 'Like',
+            number: 35,
+            header: 'Lion',
+            description: 'Lion Lion is a fantastic',
+            imageUrl: 'http://logofaves.com/wp-content/uploads/2014/01/Raww_r.jpg'
+        },
+        {
+            title: 'Like',
+            number: 6,
+            header: 'Banana',
+            description: 'Banana is a fantastic',
+            imageUrl: 'https://www.organicfacts.net/wp-content/uploads/2013/05/Banana3.jpg?b73a5d'
+        }
+        ]
+    };
+    
+    // render this class
+    var element = React.createElement(ThumbnailList, options);
+    
+    
+    // after you render this class, place it in tag
+    React.render(element, document.querySelector('.myImg'));
+    
+</script>
+</html>
