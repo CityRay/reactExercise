@@ -1,6 +1,6 @@
 # React Exercise
 
 
-## Redux
+### Redux
 - redux-form
 - redux-weather
