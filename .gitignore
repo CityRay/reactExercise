@@ -2,3 +2,10 @@
 */node_modules/*
 */*.log
 *.log
+
+bundle.js
+npm-debug.log
+
+# IntelliJ
+*.iml
+/.idea
